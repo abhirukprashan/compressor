@@ -10,10 +10,10 @@ func compress(data []byte) []byte {
         return nil
     }
     var encoded []byte
-    count := 0
+    count := 1
     prev := data[0]
 
-    for i := 1; i < len(data); i++ {
+    for i := 1; i < len(data); i ++ {
         if data[i] == prev && count < 255 {
             count++
         } else {
@@ -25,8 +25,22 @@ func compress(data []byte) []byte {
     encoded = append(encoded, byte(count), prev)
     return encoded
 }
-func decompress(){
-   fmt.Println("Decompressing")
+func decompress(data []byte) []byte {
+    var decoded []byte
+
+    for i := 0; i < len(data); i += 2 {
+
+        if i+1 >= len(data) {
+            fmt.Println("Invalid data")
+            break
+        }
+        count := int(data[i])
+        h := data[i+1]
+        for j := 0; j < count; j++ {
+            decoded = append(decoded, h)
+        }
+    }
+    return decoded
 }
 
 
@@ -49,9 +63,10 @@ func main() {
     switch command {
     case "compress":
        results = compress(file)
-       fmt.Println(results)
+       fmt.Printf(string(results))
     case "decompress":
-        decompress()
+        results = decompress(file)
+        fmt.Println(string(results))
     default:
         fmt.Println("Unknown command")
         os.Exit(1)
