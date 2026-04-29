@@ -25,14 +25,13 @@ func compress(data []byte) []byte {
     encoded = append(encoded, byte(count), prev)
     return encoded
 }
-}
 func decompress(){
    fmt.Println("Decompressing")
 }
 
 
 func main() {
-    if len(os.Args) != 2 {
+    if len(os.Args) != 3 {
         fmt.Println("Usage: compressor <file>")
         os.Exit(1)
     }
