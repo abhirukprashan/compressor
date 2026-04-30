@@ -17,7 +17,7 @@ The algorithm iterates through the byte stream and looks for consecutive identic
 
 Example:
 
-    Input: AAAAABBB (8 bytes)
+    Input: AAAAABBB ( bytes)
 
     Output: [5]A[3]B (4 bytes) — 50% Compression
 
